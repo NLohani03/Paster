@@ -7,8 +7,8 @@
 #include <string.h>
 #include <stdbool.h> 
 #include <arpa/inet.h>
-#include "./starter/png_util/crc.h"
-#include "./starter/png_util/zutil.h"
+#include "./starter/png_util/crc.h" // starter files provided from school 
+#include "./starter/png_util/zutil.h" // starter files provided from school 
 
 
 #define SERVER_1 "http://ece252-1.uwaterloo.ca:2520/image?img="
@@ -461,7 +461,7 @@ void parse_through_buffer() {
     finalPNGIENDChunk.p_data = NULL;
 
 
-    unsigned char *ihdrCrcArray = malloc(4 + finalPNGIHDRChunk.length + 1);  // We are putting ihdr.type and ihdr.p_data inside the crcArray. ihdr.type is 4 byte size and ihdr.p_data is the size of ihdr.length. We are adding 1 also for the crcArray to make the last character null
+    unsigned char *ihdrCrcArray = malloc(4 + finalPNGIHDRChunk.length + 1); 
     memset(ihdrCrcArray, 0, 4 + finalPNGIHDRChunk.length + 1);
     for (int i=0; i<(4+finalPNGIHDRChunk.length); i++) {
         if (i<4) {
@@ -615,10 +615,6 @@ int main(int argc, char **argv)
         recv_buf_cleanup(&allPNGData[i]);
 
     }
-
-    // DONE: TO DO (less priority): WE PROBABLY DON'T HAVE TO HAVE THE P-THREADS RETURNING ANYTHING SO WE CAN LATER DELETE THE RETURN FROM THE do_work, pthread_join, AND thread_ret STRUCT - don't do all these yet incase we later need it, can be done later
-    // DONE: TO DO: PARSE THROUGH THE DATA IN THE allPNGData ARRAY AND SEPERATE IT INTO THE DIFFERENT COMPONENTS (copy-paste catpng and modify to parse not a file, but parse a buffer) and into simple_PNG structs - i think
-
 
     return 0;
 }
